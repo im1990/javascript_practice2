@@ -10,9 +10,9 @@
 
 <body>
     <h1>TO DO LIST</h1>
-    <input type="radio" name="type" value="すべて" onclick="everything()" checked>すべて
-    <input type="radio" name="type" value="作業中" onclick="working()">作業中
-    <input type="radio" name="type" value="完了" onclick="complete()">完了
+    <input type="radio" name="type" value="すべて" id="everyButton" checked>すべて
+    <input type="radio" name="type" value="作業中" id="workButton">作業中
+    <input type="radio" name="type" value="完了" id="completeButton">完了
 
     <table class="list" style="table-layout: auto;">
         <thead>
@@ -28,7 +28,7 @@
 
     <h2>新規タスクの追加</h2>
     <input type="text" id="input">
-    <button onclick="addList()">追加</button>
+    <button id="add-button">追加</button>
 
     <!-- <script src="index.js"></script> -->
     <script src="modify.js"></script>
