@@ -4,16 +4,16 @@ const radioComplete = document.querySelector('#complete');
 const lists = document.querySelector('#list');
 const input = document.querySelector('#input');
 
-let todoArray = []; // [{obj1}, {obj2}　...]
+const todoArray = []; // [{obj1}, {obj2}　...]
 
-const Obj = function (todo, status) {
+const TaskObj = function (todo, status) {
     this.todo = todo;
     this.status = status;
 }
 
 function addList() {
     // 新しいオブジェクトを生成して配列に入れる
-    let newObj = new Obj(input.value, false);
+    const newObj = new TaskObj(input.value, false);
     todoArray.push(newObj);
 
     // forループ内の削除ボタンでtrを消す作業をするため、forループ外に記載
@@ -29,41 +29,36 @@ function addList() {
     toggleBtn.textContent = '作業中';
     const deleteBtn = document.createElement('button');
 
-    for (let i = 0; i < todoArray.length; i++) {
-
+    todoArray.forEach((index, value) => {
         //IDを表示させる用のtd要素を生成
-        td1.innerHTML = i;
+        td1.innerHTML = value;
         tr.appendChild(td1);
 
         //コメントを表示させる用のtd要素を生成
-        td2.innerHTML = ` ${todoArray[i].todo} `;
+        td2.innerHTML = ` ${index.todo} `;
         tr.appendChild(td2);
 
         //ボタンを表示させる用のtd要素を生成
         tr.appendChild(td3);
 
-
         // 作業中/完了ボタンを表示 
         toggleBtn.addEventListener('click', () => {
-            if (todoArray[i].status === false) {
+            if (!index.status) {
                 toggleBtn.textContent = '完了';
-                // ↓ これでは i 以前の要素も true に代わってしまう
-                todoArray[i].status = true;
+                index.status = true;
             } else {
                 toggleBtn.textContent = '作業中';
-                todoArray[i].status = false;
+                index.status = false;
             }
         });
 
         // 削除ボタンを表示
         deleteBtn.textContent = '削除'
         deleteBtn.addEventListener('click', () => {
-            todoArray.splice(i, 1);
+            todoArray.splice(value, 1);
             tr.style.display = 'none';
-            // リスト削除後にインデックスを付け直す
-            // td1.innerHTML = i;
         });
-    }
+    });
 
     td3.appendChild(toggleBtn);
     td3.appendChild(deleteBtn);
