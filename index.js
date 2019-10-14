@@ -85,4 +85,8 @@ input.addEventListener('keypress', e => {
 
 //         return todoArray.status  === false;
 //     })
+<<<<<<< HEAD
 // });
+=======
+// });
+>>>>>>> 7681baa3d4a19206f9c885128e729617d02197be
